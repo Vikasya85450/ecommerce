@@ -1,5 +1,5 @@
 import { FaHome, FaShoppingBag, FaHeart, FaUser, FaShoppingCart } from "react-icons/fa";
-import Home from "../Home";
+import Home from "../pages//Home";
 import AllProducts from "../pages/AllProducts";
 import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";

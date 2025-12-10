@@ -5,7 +5,7 @@ import RoutesProvider from './providers/RoutesProvider'
 
 const App = () => {
   return (
-    <section className='bg-gray-400 min-h-screen w-screen overflow-auto px-5 py-4'>
+    <section className='bg-white min-h-screen max-w-screen overflow-auto px-5 py-4'>
    <BrowserRouter>
    <RoutesProvider/>
    </BrowserRouter>
