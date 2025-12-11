@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useCartStore } from "../store/cart";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ item }) => {
+  const {items, addToCart,removeToCart}=useCartStore();
+ 
+  
+  
+  let inCart=useMemo(()=>{
+  const result=items.find((i)=>i?.id==item?.id);
+  if(result){
+    return true;
+  }else{
+    return false;
+  }
+  },[items]);
+
+ 
+  
+
+  const handleAddToCart=(item)=>{
+
+    
+  addToCart(item);
+  toast.success('Item added to cart',{
+    autoClose:1000
+  })
+
+}
+
+ const handleRemoveFromCart=(item)=>{
+let itemId=item.id;
+
+
+    
+  removeToCart(itemId);
+  toast.success('Item deleted From cart',{
+    autoClose:1000
+  })
+
+}
+  
+
+  
+  
   return (
     <div className="max-w-sm bg-white shadow-lg rounded-2xl p-4 hover:shadow-xl transition-all duration-300">
     
@@ -53,13 +96,19 @@ const ProductCard = ({ item }) => {
         </div>
 
         {/* Buttons */}
-        <div className="mt-5 flex gap-3">
-          <button className="w-full py-2 bg-orange-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+          {
+        inCart ? <div className="mt-5 flex gap-3">
+          <button onClick={()=>handleRemoveFromCart(item)} className="w-full py-2 bg-red-800 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+           Remove From Cart
+          </button>
+          </div>:
+         <div className="mt-5 flex gap-3">
+          <button onClick={()=>handleAddToCart(item)} className="w-full py-2 bg-orange-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
             Add to Cart
           </button>
-
           
-        </div>
+          </div>
+       }
       </div>
     </div>
   );

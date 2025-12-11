@@ -18,12 +18,7 @@ export const navItem = [
     element: AllProducts,
     icon: FaShoppingBag
   },
-  {
-    title: "Cart",
-    path: "/cart",
-    element: Cart,
-    icon: FaShoppingCart
-  },
+  
   {
     title: "Wishlist",
     path: "/wishlist",

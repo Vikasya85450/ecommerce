@@ -9,8 +9,12 @@ import { navItem } from '../utils/navbarItems'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
+import Cart from './Cart';
+
 const Navbar = () => {
 
+
+ 
   const navigate =useNavigate();
   const location = useLocation();
 
@@ -31,9 +35,13 @@ const Navbar = () => {
      </div>
 
 
-     <p className='bg-white rounded-full'>
+<div className='flex gap-2'>
+  <Cart/>
+   <p className='bg-white rounded-full'>
     <HiUserCircle size={40} className='text-orange-500 ' /> </p>
 
+</div>
+  
     </nav>
   );
 };
