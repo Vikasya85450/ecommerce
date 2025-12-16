@@ -1,8 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate} from 'react-router-dom'
+import { LoginApi } from '../utils/api';
+import { useAuthStore } from '../store/auth';
+import { toast } from 'react-toastify';
 
 const Login = () => {
      const navigate=useNavigate();
+     const [loading,setLoading]=useState(false);
+
+
+        const [formData,setFormData]=useState({ 
+             email:"",
+             password:"",
+            });
+     
+            const {login,isAuthenticated}=useAuthStore();
+
+                   useEffect(()=>{
+                    if(isAuthenticated===true){
+                      return navigate('/')
+                    }
+                    },[isAuthenticated]);
+           
+
+       const handleLogin=async(e)=>{
+        setLoading(true);
+              e.preventDefault();
+              if( formData.email?.trim()==''|| formData.password?.trim()==''  ){
+                 toast.error("All field required");
+                 return;
+              }
+     
+             try {
+                const result=await LoginApi(formData);
+            
+     
+              if(result?.response?.data?.status=='error'){
+               
+               
+               return  toast.error(result.response.data.message)
+              }
+               
+              login(result)
+              
+               toast.success("User Login Successfully");
+               setLoading(false);
+               navigate('/');
+              
+              
+             } catch (error) {
+               toast.error("Login error")
+               console.log("Error at login",error);
+               
+             }finally{
+              setLoading(false);
+             }
+              
+             
+           
+              
+              }
    return (
     <div className="min-h-screen w-full flex items-center justify-center ">
       <div className="bg-gradient-to-br -mt-14 from-gray-100 to-gray-300 w-full max-w-md rounded-2xl shadow-xl p-8">
@@ -13,11 +70,17 @@ const Login = () => {
 
 
         {/* Email */}
-        <div className="mb-4">
+           <form onSubmit={(e)=>handleLogin(e)}>
+       <div className="mb-4">
           <label htmlFor="email" className="block font-semibold mb-1">
             Email
           </label>
-          <input
+          <input 
+          value={formData.email}
+          onChange={(e)=>setFormData((p)=>{
+            return { ...p,email:e.target.value}
+          })
+          }
             id="email"
             type="email"
             placeholder="Enter your email"
@@ -31,6 +94,11 @@ const Login = () => {
             Password
           </label>
           <input
+          value={formData.password}
+         onChange={(e)=>setFormData((p)=>{
+            return { ...p,password:e.target.value}
+          })
+          }
             id="password"
             type="password"
             placeholder="Enter password"
@@ -38,12 +106,14 @@ const Login = () => {
           />
         </div>
 
+
        
 
         {/* Button */}
         <button className="w-full bg-orange-500 text-white font-semibold py-2 rounded-xl hover:bg-orange-600 hover:scale-105 transition-all duration-300">
-          Log-In
+         {loading ?"Login inning":"LogIn"}
         </button>
+        </form>
 
         {/* Footer */}
         <p className="text-center text-sm mt-4 text-gray-500">

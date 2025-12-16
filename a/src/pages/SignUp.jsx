@@ -1,24 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
+import { Signup } from "../utils/api";
+import { useAuthStore } from "../store/auth";
 
 
 const SignUp = () => {
-      
+    
        const [formData,setFormData]=useState({ 
         name:"",
         email:"",
         password:"",
         confirmPassword:""
        });
+     const [loading,setLoading]=useState(false);
+       const {login,isAuthenticated}=useAuthStore();
         const navigate=useNavigate();
 
-         const handleSignUp=(e)=>{
+        useEffect(()=>{
+        if(isAuthenticated===true){
+          return navigate('/')
+        }
+        },[isAuthenticated]);
+
+
+
+         const handleSignUp=async(e)=>{
+          setLoading(true);
          e.preventDefault();
-         if(!setFormData.name?.trim() || !setFormData.email?.trim()|| !setFormData.password?.trim() || !setFormData.confirmPassword?.trim() ){
-            toast.error("All field required")
+         if(formData.name?.trim()=='' || formData.email?.trim()==''|| formData.password?.trim()=='' || formData.confirmPassword?.trim()==='' ){
+            toast.error("All field required");
+            return;
          }
-         console.log(formData);
+
+         if(formData.password?.trim()!==formData.confirmPassword?.trim()){
+          toast.error('Password not matched')
+         }
+        try {
+           const result=await Signup(formData);
+       
+      login(result);
+         if(result?.response?.data?.status=='error'){
+          
+          
+          return  toast.error(result.response.data.message)
+         }
+
+         
+          toast.success("User created Successfully");
+          setLoading(false)
+          navigate('/');
+         
+         console.log("Signup reult",result);
+        } catch (error) {
+          toast.error("Signup error")
+          console.log("Error at signup",error);
+          
+        }
+        finally{
+          setLoading(false);
+        }
+         
+        
+      
          
          }
   return (
@@ -35,7 +79,7 @@ const SignUp = () => {
           <label htmlFor="name" className="block font-semibold mb-1">
             Name
           </label>
-          <input onChange={(e)=>setFormData((p)=>{
+          <input value={formData.name} onChange={(e)=>setFormData((p)=>{
             return { ...p,name:e.target.value}
           }
           )
@@ -53,6 +97,7 @@ const SignUp = () => {
             Email
           </label>
           <input 
+          value={formData.email}
           onChange={(e)=>setFormData((p)=>{
             return { ...p,email:e.target.value}
           })
@@ -70,8 +115,9 @@ const SignUp = () => {
             Password
           </label>
           <input
+          value={formData.password}
          onChange={(e)=>setFormData((p)=>{
-            return { ...p,email:e.target.value}
+            return { ...p,password:e.target.value}
           })
           }
             id="password"
@@ -86,8 +132,8 @@ const SignUp = () => {
           <label htmlFor="confirmPassword" className="block font-semibold mb-1">
             Confirm Password
           </label>
-          <input onChange={(e)=>setFormData((p)=>{
-            return { ...p,email:e.target.value}
+          <input value={formData.confirmPassword} onChange={(e)=>setFormData((p)=>{
+            return { ...p,confirmPassword:e.target.value}
           })
           }
             id="confirmPassword"
@@ -100,7 +146,7 @@ const SignUp = () => {
 
         {/* Button */}
         <button className="w-full bg-orange-500 text-white font-semibold py-2 rounded-xl hover:bg-orange-600 hover:scale-105 transition-all duration-300">
-          Sign Up
+    {loading?"Signing up ...":"Sign Up"}
         </button>
         </form>
 

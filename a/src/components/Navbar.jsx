@@ -10,6 +10,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import LoginSignBtn from './LoginSignBtn';
 import Cart from './Cart';
+import { useAuthStore } from '../store/auth';
+import LogoutButton from './LogoutButton';
 
 const Navbar = () => {
 
@@ -17,6 +19,8 @@ const Navbar = () => {
  
   const navigate =useNavigate();
   const location = useLocation();
+
+  const {isAuthenticated}=useAuthStore()
 
   
   return (
@@ -36,7 +40,8 @@ const Navbar = () => {
 
 
 <div className='flex gap-2'>
-  <LoginSignBtn/>
+  {isAuthenticated?<LogoutButton/>: <LoginSignBtn/>}
+ 
   <Cart/>
    <p className='bg-white rounded-full'>
     <HiUserCircle size={40} className='text-orange-500 ' /> </p>
