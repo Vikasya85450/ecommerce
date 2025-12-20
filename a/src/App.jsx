@@ -6,7 +6,7 @@ import {ToastContainer} from 'react-toastify'
 
 const App = () => {
   return (
-    <section className='bg-white min-h-screen max-w-screen overflow-auto px-5 py-4'>
+    <section className='bg-white min-h-screen max-w-screen overflow-auto '>
    <BrowserRouter>
    <RoutesProvider/>
    <ToastContainer/>

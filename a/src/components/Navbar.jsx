@@ -12,6 +12,7 @@ import LoginSignBtn from './LoginSignBtn';
 import Cart from './Cart';
 import { useAuthStore } from '../store/auth';
 import LogoutButton from './LogoutButton';
+import AdminButton from '../admin/components/AdminButton';
 
 const Navbar = () => {
 
@@ -20,7 +21,7 @@ const Navbar = () => {
   const navigate =useNavigate();
   const location = useLocation();
 
-  const {isAuthenticated}=useAuthStore()
+  const {isAuthenticated,role}=useAuthStore()
 
   
   return (
@@ -41,6 +42,10 @@ const Navbar = () => {
 
 <div className='flex gap-2'>
   {isAuthenticated?<LogoutButton/>: <LoginSignBtn/>}
+
+  {role==="admin" &&  <AdminButton/> }
+
+ 
  
   <Cart/>
    <p className='bg-white rounded-full'>
