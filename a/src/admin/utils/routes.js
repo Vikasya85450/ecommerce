@@ -8,8 +8,9 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import Category from '../pages/category/Category'
 import AddCategory from "../pages/category/Add-Category";
 import Dashboard from "../pages/Dashboard";
-// import AddProduct from "../pages/admin/AddProduct";
-// import Products from "../pages/admin/Products";
+import Products from "../pages/product/Products";
+import AddProduct from "../pages/product/AddProduct";
+
 // import AddBanner from "../pages/admin/AddBanner";
 // import Orders from "../pages/admin/Orders";
 // import Users from "../pages/admin/Users";
@@ -23,6 +24,8 @@ export const paths = [
         element: Dashboard,
         icon: MdDashboard,
         label: "Dashboard",
+        isAdmin:true
+
     },
 
     {
@@ -30,25 +33,27 @@ export const paths = [
         element: Category,
         icon: BiCategoryAlt,
         label: "Categories",
+        isAdmin:false
     },
     {
         path: "add-category",
         element: AddCategory,
         icon: AiOutlineAppstoreAdd,
         label: "Add Category",
+         isAdmin:false
     },
-    //   {
-    //     path: "products",
-    //     element: Products,
-    //     icon: MdProductionQuantityLimits,
-    //     label: "All Products",
-    //   },
-    //   {
-    //     path: "add-product",
-    //     element: AddProduct,
-    //     icon: BsBoxSeam,
-    //     label: "Add Product",
-    //   },
+      {
+        path: "products",
+        element: Products,
+        icon: MdProductionQuantityLimits,
+        label: "All Products",
+      },
+      {
+        path: "add-product",
+        element: AddProduct,
+        icon: BsBoxSeam,
+        label: "Add Product",
+      },
 
     //   {
     //     path: "add-banner",
@@ -68,6 +73,4 @@ export const paths = [
     //     icon: FaUsers,
     //     label: "Users",
     //   },
-
-
 ];
