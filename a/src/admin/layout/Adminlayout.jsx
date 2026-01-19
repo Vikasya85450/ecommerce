@@ -19,11 +19,11 @@ const Adminlayout = () => {
 
 
   return (
-    <section className='w-screen min-h-screen flex'>
+    <section className='w-screen h-full flex'>
       <div className='w-[20vw]'>
         <Sidebar />
       </div>
-      <div className='w-[80vw]'>
+      <div className='w-[80vw] max-h-screen overflow-y-scroll'>
         <Outlet />
       </div>
 

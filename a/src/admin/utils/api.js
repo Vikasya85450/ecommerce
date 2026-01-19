@@ -72,3 +72,51 @@ export const EditCategory = async (data) => {
         return;
     }
 }
+
+
+export const addProduct = async (data) => {
+    try {
+        const res = await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/api/product`,
+            data,
+
+        );
+        return res.data;
+    } catch (error) {
+        console.error(
+            "Error adding product:",
+            error.response?.data || error.message
+        );
+        throw error;
+    }
+};
+export const getProduct = async () => {
+    try {
+        const res = await axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/api/product`);
+        return res.data;
+    } catch (error) {
+        console.error(
+            "Error getting product:",
+            error.response?.data || error.message
+        );
+        throw error;
+    }
+};
+
+
+export const DeleteProduct = async (id) => {
+    try {
+        if (id) {
+             console.log(id,"try block");
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/product-delete`, {id});
+            console.log(response);
+            return response.data;
+        }
+    } catch (error) {
+         console.log(id,"error in catch");
+        console.log(error);
+        toast.error(" Category Delete Error");
+        return;
+    }
+}

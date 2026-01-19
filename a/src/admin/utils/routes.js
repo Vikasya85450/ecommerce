@@ -11,6 +11,8 @@ import Dashboard from "../pages/Dashboard";
 import Products from "../pages/product/Products";
 import AddProduct from "../pages/product/AddProduct";
 
+
+
 // import AddBanner from "../pages/admin/AddBanner";
 // import Orders from "../pages/admin/Orders";
 // import Users from "../pages/admin/Users";
@@ -19,58 +21,58 @@ import AddProduct from "../pages/product/AddProduct";
 
 
 export const paths = [
-    {
-        path: "",
-        element: Dashboard,
-        icon: MdDashboard,
-        label: "Dashboard",
-        isAdmin:true
+  {
+    path: "",
+    element: Dashboard,
+    icon: MdDashboard,
+    label: "Dashboard",
+    isAdmin: true
 
-    },
+  },
 
-    {
-        path: "categories",
-        element: Category,
-        icon: BiCategoryAlt,
-        label: "Categories",
-        isAdmin:false
-    },
-    {
-        path: "add-category",
-        element: AddCategory,
-        icon: AiOutlineAppstoreAdd,
-        label: "Add Category",
-         isAdmin:false
-    },
-      {
-        path: "products",
-        element: Products,
-        icon: MdProductionQuantityLimits,
-        label: "All Products",
-      },
-      {
-        path: "add-product",
-        element: AddProduct,
-        icon: BsBoxSeam,
-        label: "Add Product",
-      },
+  {
+    path: "categories",
+    element: Category,
+    icon: BiCategoryAlt,
+    label: "Categories",
+    isAdmin: false
+  },
+  {
+    path: "add-category",
+    element: AddCategory,
+    icon: AiOutlineAppstoreAdd,
+    label: "Add Category",
+    isAdmin: false
+  },
+  {
+    path: "products",
+    element: Products,
+    icon: MdProductionQuantityLimits,
+    label: "All Products",
+  },
+  {
+    path: "add-product",
+    element: AddProduct,
+    icon: BsBoxSeam,
+    label: "Add Product",
+  },
 
-    //   {
-    //     path: "add-banner",
-    //     element: AddBanner,
-    //     icon: RiImageAddLine,
-    //     label: "Add Banner",
-    //   },
-    //   {
-    //     path: "orders",
-    //     element: Orders,
-    //     icon: BsBoxSeam,
-    //     label: "Orders",
-    //   },
-    //   {
-    //     path: "users",
-    //     element: Users,
-    //     icon: FaUsers,
-    //     label: "Users",
-    //   },
+  //   {
+  //     path: "add-banner",
+  //     element: AddBanner,
+  //     icon: RiImageAddLine,
+  //     label: "Add Banner",
+  //   },
+  //   {
+  //     path: "orders",
+  //     element: Orders,
+  //     icon: BsBoxSeam,
+  //     label: "Orders",
+  //   },
+  //   {
+  //     path: "users",
+  //     element: Users,
+  //     icon: FaUsers,
+  //     label: "Users",
+  //   },
 ];
