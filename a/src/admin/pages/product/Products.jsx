@@ -1,52 +1,67 @@
-import React, { useEffect, useState } from 'react'
-import { getProduct } from '../../utils/api';
-import ProductCard from '../../components/ProductCard';
-import Loader from '../../../components/Loader';
-
+import React, { useEffect, useState } from "react";
+import { getProduct } from "../../utils/api";
+import ProductCard from "../../components/ProductCard";
+import EditProductModel from "../../components/EditProductModel";
+import Loader from "../../../components/Loader";
+import { toast } from "react-toastify";
 
 const Products = () => {
-
   const [products, setProducts] = useState([]);
-  const [Loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [openEdit, setOpenEdit] = useState(false);
 
-
-  const handleOpenProduct = () => {
-
-  }
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await getProduct();
+      if (res?.status) setProducts(res.result);
+    } catch {
+      toast.error("Failed to load products");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchDta = async () => {
-      try {
-        setLoading(true)
-        const response = await getProduct();
-
-        if (response.status) {
-          setProducts(response.result)
-        }
-
-      } catch (error) {
-        setLoading(false);
-        toast.error("something went wrong ")
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchDta();
+    fetchProducts();
   }, []);
 
+  const handleOpenProduct = (product) => {
+    setSelectedProduct(product);
+    setOpenEdit(true);
+  };
 
-  if (Loading) {
-    return <div className='h-screen w-full flex justify-center items-center'>
-      <Loader color={"text-black"} />
-    </div>
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader color="text-black" />
+      </div>
+    );
   }
-  return (
-    <div className='w-full grid p-4 grid-cols-4 gap-3 '>
-      {
-        products.map((product, i) => <ProductCard key={i} data={product} handleOpenProduct={handleOpenProduct} />)
-      }
-    </div>
-  )
-}
 
-export default Products
+  return (
+    <>
+      <div className="grid grid-cols-4 gap-4 p-4">
+        {products.map((p) => (
+          <ProductCard
+            key={p._id}
+            data={p}
+            handleOpenProduct={handleOpenProduct}
+            onDeleteSuccess={fetchProducts}
+          />
+        ))}
+      </div>
+
+      {openEdit && selectedProduct && (
+        <EditProductModel
+          product={selectedProduct}
+          onClose={() => setOpenEdit(false)}
+          onSuccess={fetchProducts}
+        />
+      )}
+    </>
+  );
+};
+
+export default Products;

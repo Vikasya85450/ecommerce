@@ -5,6 +5,7 @@ import Loader from '../components/Loader'
 import { useCartStore } from '../store/cart'
 import { toast } from 'react-toastify'
 import CategoryScroll from '../components/CategoryScroll'
+import Bannner from '../components/Bannner'
 
 const Home = () => {
 
@@ -69,6 +70,8 @@ const Home = () => {
     <div>
       <h1>All Products</h1>
       <CategoryScroll setSelectedCategory={setSelectedCategory} selected={selected} />
+<div className='flex px-4 py-2'><Bannner /></div>
+      
       <div className='grid grid-cols-4 gap-4 overflow-x-auto'>
         {products.map((item, i) => <ProductCard key={i} item={item} />)}
       </div>

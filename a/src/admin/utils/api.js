@@ -46,7 +46,7 @@ export const DeleteCategory = async (id) => {
 
         if (id) {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/category-delete`, { id });
-            console.log(response);
+           
 
             return response.data;
         }
@@ -104,19 +104,33 @@ export const getProduct = async () => {
     }
 };
 
-
 export const DeleteProduct = async (id) => {
-    try {
-        if (id) {
-             console.log(id,"try block");
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/product-delete`, {id});
-            console.log(response);
-            return response.data;
-        }
-    } catch (error) {
-         console.log(id,"error in catch");
-        console.log(error);
-        toast.error(" Category Delete Error");
-        return;
-    }
-}
+  try {
+    if (!id) return null;
+
+    const res = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`
+    );
+
+    return res.data;
+  } catch (error) {
+    console.log("Delete product error for id:", id);
+    console.log(error);
+    toast.error("Product delete failed");
+    return null;
+  }
+};
+
+
+export const EditProduct = async (id, formData) => {
+  try {
+    const res = await axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,formData);
+    return res.data;
+  } catch (error) {
+    console.log("Edit product error for id:", id);
+    console.log(error);
+    toast.error("Product edit failed");
+    return null;
+  }
+};
