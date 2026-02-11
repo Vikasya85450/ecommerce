@@ -16,7 +16,6 @@ const Category = () => {
 
   const handleOpenCategory =(data)=>{
     setEditData(data);
-    
     setIsEdit(true);
   }
 

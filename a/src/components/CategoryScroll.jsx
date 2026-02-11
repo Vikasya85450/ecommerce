@@ -28,7 +28,7 @@ const CategoryScroll = ({selected,setSelectedCategory}) => {
 
     return (
         <div className="w-full overflow-x-auto px-4 no-scrollbar bg-gray-100">
-            <div className="flex gap-20 w-max py-4 cursor-pointer ">
+            <div className="flex gap-15 w-max py-4 cursor-pointer ">
                 <CategoryCircle data={allCategoryItem} selected={selected} setSelectedCategory={setSelectedCategory} />
                 {allCategory.map((c, i) => (
                     <CategoryCircle selected={selected} setSelectedCategory={setSelectedCategory} key={i} data={c} />

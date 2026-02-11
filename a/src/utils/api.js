@@ -41,13 +41,9 @@ export const getProduct = async () => {
 
 export const getCategory = async () => {
     try {
-
         const res = await axios.get(
             `${import.meta.env.VITE_BACKEND_URL}/api/category`
-
         );
-
-
         return res.data;
     } catch (error) {
         console.error(
@@ -56,4 +52,50 @@ export const getCategory = async () => {
         );
         throw error;
     }
+};
+
+
+export const showproduct = async (id) => {
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Error in finding product:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+export const seeprofile = async (id) => {
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/user/${id}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Error in finding product:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+export const searchproduct = async (query) => {
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/product/search?query=${query}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Error in search product:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
 };

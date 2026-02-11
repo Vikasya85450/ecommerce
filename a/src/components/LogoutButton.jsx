@@ -5,7 +5,7 @@ const LogoutButton = () => {
 
     const {logout}=useAuthStore();
   return (
-     <button onClick={()=>logout()} className='bg-orange-500 font-semibold px-3 py-2  rounded-full  text-white hover:scale-110 hover:bg-blue-500 hover:shadow-xl transition-all duration-200 cursor-pointer' >Logout</button>
+     <button onClick={()=>logout()} className='bg-cyan-900 font-semibold px-2  my-1 rounded-2xl    text-white hover:scale-90 hover:bg-gray-500 hover:shadow-xl transition-all duration-200 cursor-pointer' >Logout</button>
   )
 }
 

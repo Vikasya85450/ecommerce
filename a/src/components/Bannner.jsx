@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import b1 from "../assets/banner/b2.jpg";
 import b2 from "../assets/banner/b1.jpg";
 import b3 from "../assets/banner/b3.avif"; 
@@ -14,7 +14,17 @@ const Banner = () => {
 
   const nextSlide = () => {
     setCurrent(current === banners.length - 1 ? 0 : current + 1);
-  };
+  }; 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) =>
+        prev === banners.length - 1 ? 0 : prev + 1
+      );
+    }, 5000); 
+
+    return () => clearInterval(interval); 
+  }, []);
 
   return (
     <div className="container mx-auto px-4">

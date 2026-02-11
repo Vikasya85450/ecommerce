@@ -128,7 +128,6 @@ export const EditProduct = async (id, formData) => {
       `${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,formData);
     return res.data;
   } catch (error) {
-    console.log("Edit product error for id:", id);
     console.log(error);
     toast.error("Product edit failed");
     return null;

@@ -7,8 +7,8 @@ import Orders from "../pages/Orders";
 
 export const navItem = [
   {
-    title: "Home",
-    path: "/",
+    title: "Address",
+    path: "/address",
     element: Home,
     icon: FaHome
   },
@@ -30,5 +30,19 @@ export const navItem = [
     path: "/orders",
     element: Orders,      
     icon: FaUser          
-  }
+  },
+   {
+    title: "Contact-Us",
+    path: "/contact",
+    element: Orders,      
+    icon: FaUser          
+  },
+   {
+    title: "Gift-card",
+    path: "/gift-card",
+    element: Orders,      
+    icon: FaUser          
+  },
+
+  
 ];

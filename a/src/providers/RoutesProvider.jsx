@@ -10,6 +10,9 @@ import { paths } from '../admin/utils/routes'
 import UserLayout from '../layouts/Userlayout'
 import AdminLayout from '../admin/layout/Adminlayout'
 import Dashboard from '../admin/pages/Dashboard'
+import ShowProduct from '../components/ShowProduct'
+import Profile from '../pages/Profile'
+import Home from '../pages/Home'
 
 
 
@@ -22,13 +25,19 @@ const RoutesProvider = () => {
         <Route element={<UserLayout />}>
           {navItem.map((item) => (
             <Route path={item.path} element={<item.element />} />
-
+           
 
           ))}
           <Route path={"/cart"} element={<Cart />} />
-          <Route path={"/signUp"} element={<SignUp />} />
-          <Route path={'/logIn'} element={<Login />} />
+           <Route path={'/'} element={<Home />} />
+          
+          <Route path={'/profile'} element={<Profile />} />
+          <Route path={"profile/signUp"} element={<SignUp />} />
+          <Route path={'profile/logIn'} element={<Login />} />
 
+          <Route path="/product/:id" element={<ShowProduct />} />
+
+            
         </Route>
 
         <Route path='/admin' element={<AdminLayout />}>
