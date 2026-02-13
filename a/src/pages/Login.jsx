@@ -52,7 +52,7 @@ const Login = () => {
       }
 
       login(result);
-      toast.success("User created successfully");
+      toast.success("User logged inn.. ");
       navigate("/");
 
     } catch (error) {

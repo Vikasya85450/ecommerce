@@ -1,48 +1,52 @@
-import { FaHome, FaShoppingBag, FaHeart, FaUser, FaShoppingCart } from "react-icons/fa";
-import Home from "../pages//Home";
+import {
+  FaShoppingBag,
+  FaHeart,
+  FaUser,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaGift,
+  FaShoppingCart
+} from "react-icons/fa";
+
 import AllProducts from "../pages/AllProducts";
-import Cart from "../pages/Cart";
 import Wishlist from "../pages/Wishlist";
-import Orders from "../pages/Orders"; 
+import Orders from "../pages/Orders";
 
 export const navItem = [
   {
     title: "Address",
     path: "/address",
-    element: Home,
-    icon: FaHome
+    element: Orders,
+    icon: FaMapMarkerAlt,
   },
   {
     title: "Products",
     path: "/products",
     element: AllProducts,
-    icon: FaShoppingBag
+    icon: FaShoppingBag,
   },
-  
   {
     title: "Wishlist",
     path: "/wishlist",
     element: Wishlist,
-    icon: FaHeart
+    icon: FaHeart,
   },
   {
     title: "Orders",
     path: "/orders",
-    element: Orders,      
-    icon: FaUser          
+    element: Orders,
+    icon: FaShoppingCart,
   },
-   {
-    title: "Contact-Us",
+  {
+    title: "Contact Us",
     path: "/contact",
-    element: Orders,      
-    icon: FaUser          
+    element: Orders,
+    icon: FaPhone,
   },
-   {
-    title: "Gift-card",
+  {
+    title: "Gift Card",
     path: "/gift-card",
-    element: Orders,      
-    icon: FaUser          
+    element: Orders,
+    icon: FaGift,
   },
-
-  
 ];
