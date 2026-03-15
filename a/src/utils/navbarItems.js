@@ -11,12 +11,14 @@ import {
 import AllProducts from "../pages/AllProducts";
 import Wishlist from "../pages/Wishlist";
 import Orders from "../pages/Orders";
+import Contact from "../pages/Contact";
+import Address from "../pages/Address";
 
 export const navItem = [
   {
     title: "Address",
-    path: "/address",
-    element: Orders,
+    path: "/api/address",
+    element: Address,
     icon: FaMapMarkerAlt,
   },
   {
@@ -40,7 +42,7 @@ export const navItem = [
   {
     title: "Contact Us",
     path: "/contact",
-    element: Orders,
+    element: Contact,
     icon: FaPhone,
   },
   {

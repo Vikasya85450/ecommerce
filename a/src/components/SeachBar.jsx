@@ -15,7 +15,7 @@ const SearchBar = () => {
     e.preventDefault();
 
     if (!query.trim()) return;
-
+    
     try {
       const data = await searchproduct(query);
       console.log("Search result:", data);

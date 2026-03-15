@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Logo = () => {
   const navigate=useNavigate();
   return (
-    <div className='flex ' onClick={()=>navigate('/')}>
+    <div className='flex cursor-pointer' onClick={()=>navigate('/')}>
          <div className='flex flex-col'>
           <h1 className='text-5xl lobster-text font-bold px-3 text-blue-900'>SnapBasket</h1>
          <p className='text-lg font-stretch-50% text-center text-gray-600'> Snap It. Own It</p>

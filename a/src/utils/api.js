@@ -99,3 +99,34 @@ export const searchproduct = async (query) => {
     throw error;
   }
 };
+
+export const addAdress = async (data) => {
+    try {
+        const res = await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+            data,
+        );
+        return res.data;
+    } catch (error) {
+        console.error(
+            "Error adding product:",
+            error.response?.data || error.message
+        );
+        throw error;
+    }
+};
+
+export const getAddress = async (query) => {
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/address`
+    );
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Error in search product:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};

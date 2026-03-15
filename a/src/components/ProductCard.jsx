@@ -1,16 +1,25 @@
 import React, { useMemo } from "react";
 import { useCartStore } from "../store/cart";
-import { handleAddToCart, handleRemoveFromCart } from "../libs/helper";
+import { handleAddToCart, handleAddToWishlist, handleRemoveFromCart, handleRemoveFromWishlist } from "../libs/helper";
 import { useNavigate } from 'react-router-dom'
+import { useWishlistStore } from "../store/wish";
 
 const ProductCard = ({ item }) => {
   const { items, addToCart, removeToCart } = useCartStore();
+  // const {wishitems,removeFromWish,addToWish}=useWishlistStore();
+  const { wishitems, addToWish, removeFromWish } = useWishlistStore();
 
   const inCart = useMemo(() => {
     return items.some((i) => i?._id === item?._id);
-  }, [items, item?._id]);
-   
+  }, [items, item?._id]);  
+
+
+ const inWishlist = useMemo(() => {
+  return wishitems.some((i) => i?._id === item?._id);
+}, [wishitems, item?._id]);
+
   const navigate = useNavigate();
+
   return (
   
     <div  className="max-w-sm bg-white shadow-lg rounded-2xl p-4 hover:shadow-xl transition-all duration-300 flex flex-col" >
@@ -31,7 +40,23 @@ const ProductCard = ({ item }) => {
           `}
         >
           {item.stock > 0 ? "In Stock" : "Out of Stock"}
-        </span>
+        </span>   
+
+
+        {/* ❤️ Wishlist Button */}
+<button
+  onClick={(e) => {
+    e.stopPropagation(); // prevent navigation
+    inWishlist
+      ? handleRemoveFromWishlist(item, removeFromWish)
+      : handleAddToWishlist(item, addToWish);
+  }}
+  className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md"
+>
+  {inWishlist ? "❤️" : "🤍"}
+</button> 
+
+
       </div>
 
         <h2 className="text-lg font-bold text-gray-800">
@@ -89,7 +114,7 @@ const ProductCard = ({ item }) => {
       </div>
     </div>
     
-  );
-};
+  )
+}
 
 export default ProductCard;

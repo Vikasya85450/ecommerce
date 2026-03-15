@@ -13,6 +13,7 @@ import Dashboard from '../admin/pages/Dashboard'
 import ShowProduct from '../components/ShowProduct'
 import Profile from '../pages/Profile'
 import Home from '../pages/Home'
+import Addressform from '../components/Addressform'
 
 
 
@@ -36,6 +37,7 @@ const RoutesProvider = () => {
           <Route path={'profile/logIn'} element={<Login />} />
 
           <Route path="/product/:id" element={<ShowProduct />} />
+          <Route path="/api/addressform" element={<Addressform />} />
 
             
         </Route>
